@@ -1,9 +1,10 @@
 import "./App.css";
+import Login from "./pages/Login/Login.page";
 
 function App() {
   return (
     <div className="App">
-      <h1>Instagram Clone</h1>
+      <Login />
     </div>
   );
 }
