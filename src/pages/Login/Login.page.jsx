@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import "./Login.styles";
 import styled from "styled-components";
+import { Button } from "../../components/Button/Button.component";
 import { InputField } from "../../components/InputField/InputField.component";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  console.log(username, password);
+  const [valid, setValid] = useState(false);
+
+  useEffect(() => {
+    const inputEmptyValidation = () => {
+      if (username !== "" && password !== "") {
+        setValid(false);
+      } else {
+        setValid(true);
+      }
+    };
+    inputEmptyValidation();
+  }, [username, password]);
+
   return (
     <LoginPageContainer>
       <LoginPageWrapper>
@@ -27,6 +40,7 @@ const Login = () => {
               value={password}
               setChange={setPassword}
             />
+            <Button type="submit" text="Log In" disabled={valid} />
           </Form>
         </LoginPageBox>
       </LoginPageWrapper>
