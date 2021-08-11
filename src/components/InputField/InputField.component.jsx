@@ -1,4 +1,4 @@
-import "./InputField.styles.css";
+import styled from "styled-components";
 export const InputField = ({
   type,
   label,
@@ -38,8 +38,8 @@ export const InputField = ({
   };
 
   return (
-    <div className="inputField">
-      <input
+    <InputFieldWrapper>
+      <Input
         id={name}
         type={type}
         placeholder={placeholder && placeholder}
@@ -47,12 +47,66 @@ export const InputField = ({
         value={value}
         onChange={(e) => setChange(e.target.value)}
       />
-      {label && <label htmlFor={name}>{label}</label>}
+      {label && <Label htmlFor={name}>{label}</Label>}
       {type === "password" && (
-        <span className="showBtn" onClick={handlePasswordType}>
+        <ShowBtn className="showBtn" onClick={handlePasswordType}>
           Show
-        </span>
+        </ShowBtn>
       )}
-    </div>
+    </InputFieldWrapper>
   );
 };
+
+const InputFieldWrapper = styled.div`
+  position: relative;
+  margin-bottom: 7px;
+  color: #262626;
+`;
+
+const Input = styled.input`
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  background: #fafafa;
+  background: rgba(var(--b3f, 250, 250, 250), 1);
+  padding: 9px 0 7px 9px;
+  border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
+  border-radius: 3px;
+  width: 100%;
+  height: 41px;
+  font-size: 14px;
+
+  &:focus {
+    border-color: #a8a8a8;
+    border-color: rgba(var(--c8c, 168, 168, 168), 1);
+  }
+
+  &.notEmpty {
+    padding-top: 20px;
+  }
+
+  &.notEmpty ~ label {
+    font-size: 10px;
+    top: 4px;
+  }
+`;
+
+const Label = styled.label`
+  color: #8e8e8e;
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  left: 10px;
+  top: 13px;
+  cursor: auto;
+  transition: 0.2s all;
+`;
+
+const ShowBtn = styled.span`
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  display: none;
+`;

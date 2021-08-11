@@ -21,7 +21,7 @@ const CustomButton = styled.button`
   margin-top: 8px;
 
   &.disabled {
-    opacity: 0.6;
+    opacity: 0.3;
     pointer-events: none;
   }
 `;

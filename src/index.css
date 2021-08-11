@@ -18,3 +18,8 @@ code {
 input:focus {
   outline: none;
 }
+
+input[type="password"] {
+  letter-spacing: 3px;
+  font-size: 11px;
+}
