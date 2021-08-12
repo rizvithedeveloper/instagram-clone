@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 // import "./Login.styles";
 import styled from "styled-components";
 import { Button } from "../../components/Button/Button.component";
+import { DividerWithText } from "../../components/DividerWithText/DividerWithText.component";
 import { InputField } from "../../components/InputField/InputField.component";
 
 const Login = () => {
@@ -42,6 +43,8 @@ const Login = () => {
             />
             <Button type="submit" text="Log In" disabled={valid} />
           </Form>
+
+          <DividerWithText text="or" />
         </LoginPageBox>
       </LoginPageWrapper>
     </LoginPageContainer>
