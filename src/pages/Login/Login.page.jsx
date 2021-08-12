@@ -4,11 +4,29 @@ import { Link } from "react-router-dom";
 import { Button } from "../../components/Button/Button.component";
 import { DividerWithText } from "../../components/DividerWithText/DividerWithText.component";
 import { InputField } from "../../components/InputField/InputField.component";
+import { AppImageSlides } from "../../components/AppImageSlides/AppImageSlides.component";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [valid, setValid] = useState(false);
+  const [slideImages] = useState([
+    {
+      url: "/assets/images/app_screenshot1.jpg",
+    },
+    {
+      url: "/assets/images/app_screenshot2.jpg",
+    },
+    {
+      url: "/assets/images/app_screenshot3.jpg",
+    },
+    {
+      url: "/assets/images/app_screenshot4.jpg",
+    },
+    {
+      url: "/assets/images/app_screenshot5.jpg",
+    },
+  ]);
 
   useEffect(() => {
     const inputEmptyValidation = () => {
@@ -23,6 +41,10 @@ const Login = () => {
 
   return (
     <LoginPageContainer>
+      <LoginPageAppWrapper>
+        <AppImageSlides slides={slideImages} interval={3000} />
+      </LoginPageAppWrapper>
+
       <LoginPageWrapper>
         <LoginPageBox>
           <Logo src="/assets/images/insta_logo.png" />
@@ -187,4 +209,5 @@ const DownloadAppImage = styled.img`
   width: 100%;
 `;
 
+const LoginPageAppWrapper = styled.div``;
 export default Login;
