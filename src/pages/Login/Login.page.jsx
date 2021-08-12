@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-// import "./Login.styles";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { Button } from "../../components/Button/Button.component";
 import { DividerWithText } from "../../components/DividerWithText/DividerWithText.component";
 import { InputField } from "../../components/InputField/InputField.component";
@@ -45,6 +45,15 @@ const Login = () => {
           </Form>
 
           <DividerWithText text="or" />
+
+          <LoginWithFacebook>
+            <FacebookIcon className="fab fa-facebook-square" />
+            <FacebookText>Log in with Facebook</FacebookText>
+          </LoginWithFacebook>
+
+          <ForgetPassword to="/accounts/password/reset">
+            Forget password?
+          </ForgetPassword>
         </LoginPageBox>
       </LoginPageWrapper>
     </LoginPageContainer>
@@ -79,5 +88,36 @@ const Logo = styled.img`
 `;
 
 const Form = styled.form``;
+
+const LoginWithFacebook = styled.button`
+  color: #385185;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  cursor: pointer;
+`;
+
+const FacebookIcon = styled.i`
+  font-size: 20px;
+  margin-right: 8px;
+`;
+
+const FacebookText = styled.span`
+  font-size: 14px;
+  font-weight: 600;
+`;
+
+const ForgetPassword = styled(Link)`
+  color: #385185;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+`;
 
 export default Login;
