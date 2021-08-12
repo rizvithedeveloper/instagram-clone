@@ -6,6 +6,7 @@ export const InputField = ({
   name,
   value,
   setChange,
+  passwordInput,
 }) => {
   // Handle on not Empty
   const handleTyping = (e) => {
@@ -13,14 +14,18 @@ export const InputField = ({
     const showBtn = document.querySelector(".showBtn");
     if (input.value !== "") {
       input.classList.add("notEmpty");
-      type === "password"
-        ? (showBtn.style.display = "block")
-        : (showBtn.style.display = "none");
+      if (passwordInput) {
+        type === "password"
+          ? (showBtn.style.display = "block")
+          : (showBtn.style.display = "none");
+      }
     } else {
       input.classList.remove("notEmpty");
-      type === "password"
-        ? (showBtn.style.display = "none")
-        : (showBtn.style.display = "block");
+      if (passwordInput) {
+        type === "password"
+          ? (showBtn.style.display = "none")
+          : (showBtn.style.display = "block");
+      }
     }
   };
 

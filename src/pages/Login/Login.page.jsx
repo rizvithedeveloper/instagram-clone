@@ -62,6 +62,7 @@ const Login = () => {
               name="password"
               value={password}
               setChange={setPassword}
+              passwordInput
             />
             <Button type="submit" text="Log In" disabled={valid} />
           </Form>
