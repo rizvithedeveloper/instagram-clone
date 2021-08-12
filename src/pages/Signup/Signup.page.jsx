@@ -6,7 +6,9 @@ import { DividerWithText } from "../../components/DividerWithText/DividerWithTex
 import { InputField } from "../../components/InputField/InputField.component";
 import { AppImageSlides } from "../../components/AppImageSlides/AppImageSlides.component";
 
-const Login = () => {
+const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [valid, setValid] = useState(false);
@@ -30,28 +32,55 @@ const Login = () => {
 
   useEffect(() => {
     const inputEmptyValidation = () => {
-      if (username !== "" && password !== "") {
+      if (
+        email !== "" &&
+        fullName !== "" &&
+        username !== "" &&
+        password !== ""
+      ) {
         setValid(false);
       } else {
         setValid(true);
       }
     };
     inputEmptyValidation();
-  }, [username, password]);
+  }, [email, fullName, username, password]);
 
   return (
-    <LoginPageContainer>
-      <LoginPageAppWrapper>
+    <SignUpPageContainer>
+      <SignUpPageAppWrapper>
         <AppImageSlides slides={slideImages} interval={3000} />
-      </LoginPageAppWrapper>
+      </SignUpPageAppWrapper>
 
-      <LoginPageWrapper>
-        <LoginPageBox>
+      <SignUpPageWrapper>
+        <SignUpPageBox>
           <Logo src="/assets/images/insta_logo.png" />
+          <SignupText>
+            Sign up to see photos and videos from your friends.
+          </SignupText>
+          <LoginWithFacebook>
+            <FacebookIcon className="fab fa-facebook-square"></FacebookIcon>
+            <FacebookText>Log in with Facebook</FacebookText>
+          </LoginWithFacebook>
+          <DividerWithText text="or" />
           <Form>
             <InputField
               type="text"
-              label="Phone number, username, or email"
+              label="Mobile Number or Email"
+              name="email"
+              value={email}
+              setChange={setEmail}
+            />
+            <InputField
+              type="text"
+              label="Full Name"
+              name="fullName"
+              value={fullName}
+              setChange={setFullName}
+            />
+            <InputField
+              type="text"
+              label="Username"
               name="username"
               value={username}
               setChange={setUsername}
@@ -63,25 +92,14 @@ const Login = () => {
               value={password}
               setChange={setPassword}
             />
-            <Button type="submit" text="Log In" disabled={valid} />
+            <Button type="submit" text="Sign Up" disabled={valid} />
           </Form>
+        </SignUpPageBox>
 
-          <DividerWithText text="or" />
-
-          <LoginWithFacebook>
-            <FacebookIcon className="fab fa-facebook-square" />
-            <FacebookText>Log in with Facebook</FacebookText>
-          </LoginWithFacebook>
-
-          <ForgetPassword to="/accounts/password/reset">
-            Forget password?
-          </ForgetPassword>
-        </LoginPageBox>
-
-        <LoginPageBox>
-          <NotAccountText>Don't have an account?</NotAccountText>
-          <SignUpLink to="/accounts/emailsignup">Sign Up</SignUpLink>
-        </LoginPageBox>
+        <SignUpPageBox>
+          <NotAccountText>Have an account?</NotAccountText>
+          <LogInLink to="/accounts/login">Log in</LogInLink>
+        </SignUpPageBox>
 
         <GetTheAppBox>
           <GetTheAppText>Get the app.</GetTheAppText>
@@ -107,12 +125,12 @@ const Login = () => {
             </DownloadApp>
           </DownloadAppRow>
         </GetTheAppBox>
-      </LoginPageWrapper>
-    </LoginPageContainer>
+      </SignUpPageWrapper>
+    </SignUpPageContainer>
   );
 };
 
-const LoginPageContainer = styled.div`
+const SignUpPageContainer = styled.div`
   min-height: 100vh;
   padding: 30px 0px;
   display: flex;
@@ -120,7 +138,7 @@ const LoginPageContainer = styled.div`
   align-items: center;
 `;
 
-const LoginPageWrapper = styled.div`
+const SignUpPageWrapper = styled.div`
   width: 350px;
   text-align: center;
 
@@ -130,7 +148,7 @@ const LoginPageWrapper = styled.div`
   }
 `;
 
-const LoginPageBox = styled.div`
+const SignUpPageBox = styled.div`
   background-color: #fff;
   padding: 20px 40px;
   width: 100%;
@@ -141,25 +159,36 @@ const LoginPageBox = styled.div`
 
 const Logo = styled.img`
   width: 175px;
-  padding: 20px 0;
+  padding-top: 20px;
 `;
 
-const Form = styled.form``;
+const SignupText = styled.h3`
+  color: #8e8e8e;
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+`;
 
 const LoginWithFacebook = styled.button`
-  color: #385185;
-  background: none;
-  border: none;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  align-items: center;
+  width: 100%;
+  background-color: #0095f6;
+  background-color: rgba(var(--d69, 0, 149, 246), 1);
+  border: none;
+  color: #fff;
+  padding: 7px 9px;
+  border-radius: 4px;
   cursor: pointer;
 `;
 
 const FacebookIcon = styled.i`
   font-size: 20px;
-  margin-right: 8px;
+  margin-right: 10px;
 `;
 
 const FacebookText = styled.span`
@@ -167,21 +196,14 @@ const FacebookText = styled.span`
   font-weight: 600;
 `;
 
-const ForgetPassword = styled(Link)`
-  color: #385185;
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-`;
+const Form = styled.form``;
 
 const NotAccountText = styled.span`
   font-size: 14px;
   font-weight: 500;
 `;
 
-const SignUpLink = styled(Link)`
+const LogInLink = styled(Link)`
   color: #0095f6;
   color: rgba(var(--d69, 0, 149, 246), 1);
   font-size: 14px;
@@ -214,9 +236,9 @@ const DownloadAppImage = styled.img`
   width: 100%;
 `;
 
-const LoginPageAppWrapper = styled.div`
+const SignUpPageAppWrapper = styled.div`
   @media (max-width: 925px) {
     display: none;
   }
 `;
-export default Login;
+export default SignUp;

@@ -39,15 +39,13 @@ export const Footer = () => {
       </FooterLinksRow>
 
       <FooterCopyrightRow>
-        <LanguageSelect>
+        <LanguageSelect defaultValue="en">
           <Option value="af">Afrikaans</Option>
           <Option value="cs">Čeština</Option>
           <Option value="da">Dansk</Option>
           <Option value="de">Deutsch</Option>
           <Option value="el">Ελληνικά</Option>
-          <Option value="en" selected>
-            English
-          </Option>
+          <Option value="en">English</Option>
           <Option value="en-gb">English (UK)</Option>
           <Option value="es">Español (España)</Option>
           <Option value="es-la">Español</Option>

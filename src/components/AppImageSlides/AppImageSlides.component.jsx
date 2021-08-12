@@ -18,8 +18,12 @@ export const AppImageSlides = ({ slides, interval }) => {
       next.classList.add("visible");
       current.classList.remove("visible");
     }
-    setInterval(ImageFade, interval); // repeat that javascrispt every 3 seconds
-  }, [interval]);
+    const slideInterval = setInterval(ImageFade, interval);
+
+    return () => {
+      clearInterval(slideInterval);
+    };
+  }, [interval, slides]);
 
   return (
     <AppSlidesWrapper>
